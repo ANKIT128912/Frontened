@@ -1,12 +1,10 @@
-import axios from "axios";
-
-const API = "https://vercel-backened.onrender.com/api/expenses";
+import API from "./api";
 
 // Add Expense
 export const addExpense = async (expenseData) => {
   const token = localStorage.getItem("token");
 
-  const res = await axios.post(`${API}/add`, expenseData, {
+  const res = await API.post("/expenses/add", expenseData, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -19,7 +17,7 @@ export const addExpense = async (expenseData) => {
 export const getExpenses = async () => {
   const token = localStorage.getItem("token");
 
-  const res = await axios.get(API, {
+  const res = await API.get("/expenses", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
