@@ -13,7 +13,7 @@ const fetchExpenses=async()=>{
 
 const token=localStorage.getItem("token");
 
-const res=await API.get("/expense",{
+const res=await API.get("/expenses",{
 headers:{Authorization:`Bearer ${token}`}
 });
 
