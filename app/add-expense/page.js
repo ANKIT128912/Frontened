@@ -3,63 +3,63 @@
 import { useState } from "react";
 import API from "../services/api";
 
-export default function AddExpense(){
+export default function AddExpense() {
 
-const [amount,setAmount]=useState("");
-const [category,setCategory]=useState("");
-const [note,setNote]=useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [note, setNote] = useState("");
 
-const addExpense=async()=>{
+  const addExpense = async () => {
 
-const token=localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-await API.post("/expense/add",
+    const data = {
+      amount,
+      category,
+      note
+    };
 
-{amount,category,note},
+    await API.post("/expenses/add", data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
-{headers:{Authorization:`Bearer ${token}`}}
+    alert("Expense Added");
+  };
 
-);
+  return (
+    <div className="container">
+      <div className="card">
 
-alert("Expense Added");
+        <h2>Add Expense</h2>
 
-};
+        <input
+          placeholder="Amount"
+          onChange={(e) => setAmount(e.target.value)}
+        />
 
-return(
+        <br />
 
-<div className="container">
+        <input
+          placeholder="Category"
+          onChange={(e) => setCategory(e.target.value)}
+        />
 
-<div className="card">
+        <br />
 
-<h2>Add Expense</h2>
+        <input
+          placeholder="Note"
+          onChange={(e) => setNote(e.target.value)}
+        />
 
-<input
-placeholder="Amount"
-onChange={(e)=>setAmount(e.target.value)}
-/>
+        <br />
 
-<br/>
+        <button onClick={addExpense}>
+          Add Expense
+        </button>
 
-<input
-placeholder="Category"
-onChange={(e)=>setCategory(e.target.value)}
-/>
-
-<br/>
-
-<input
-placeholder="Note"
-onChange={(e)=>setNote(e.target.value)}
-/>
-
-<br/>
-
-<button onClick={addExpense}>Add Expense</button>
-
-</div>
-
-</div>
-
-);
-
+      </div>
+    </div>
+  );
 }
