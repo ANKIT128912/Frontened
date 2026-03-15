@@ -1,9 +1,7 @@
-import axios from "axios";
-
-const API = "https://vercel-backened.onrender.com/api/auth";
+import API from "./api";
 
 export const loginUser = async (data) => {
-  const res = await axios.post(`${API}/login`, data);
+  const res = await API.post("/auth/login", data);
 
   localStorage.setItem("token", res.data.token);
   localStorage.setItem("name", res.data.name);
@@ -12,6 +10,6 @@ export const loginUser = async (data) => {
 };
 
 export const signupUser = async (data) => {
-  const res = await axios.post(`${API}/signup`, data);
+  const res = await API.post("/auth/signup", data);
   return res.data;
 };
