@@ -21,8 +21,8 @@ export default function Signup() {
       alert("Account Created Successfully");
 
     } catch (error) {
-      alert("Signup Failed");
-      console.log(error);
+      console.log(error.response?.data);
+      alert(error.response?.data?.message || "Signup Failed");
     }
   };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/expense";
+const API = "https://vercel-backened.onrender.com/api/expenses";
 
 export const addExpense = async (expenseData) => {
   const token = localStorage.getItem("token");
